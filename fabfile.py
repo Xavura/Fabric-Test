@@ -21,20 +21,20 @@ def release(name, directory):
 
 		if not exists(releases_directory):
 			os.makedirs(releases_directory)
-		
+
 		with lcd(releases_directory):
 			with settings(warn_only=True):
 				if not exists(join(releases_directory, 'RELEASE')):
 					local("touch RELEASE")
 					# local("echo '%s' > RELEASE" % commit)
-				
-				last_release = local("cat RELEASE", capture=True).rstrip()
 
 				if exists(join(releases_directory, commit)):
 					print("%s is already running commit %s, aborting!" % (name, commit))
 					return
 
 				local("echo '%s' > RELEASE" % commit)
+				
+				last_release = local("cat RELEASE", capture=True).rstrip()
 
 				if last_release:
 					print("Photocalls-Website is being upraded from commit %s to commit %s." % (last_release, commit))
@@ -49,7 +49,7 @@ def release(name, directory):
 
 				with lcd(releases_directory):
 					with settings(warn_only=True):
-						local("test -f current && rm -f current")
+						local("test -L current && rm -f current")
 
 					local("ln -s %s %s" % (commit, 'current'))
 					print("%s is now at commit %s" % (name, commit))
