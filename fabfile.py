@@ -4,8 +4,6 @@ from fabric.contrib.files import first, exists
 from os.path import join
 import os
 
-env.hosts = ['photocalls.webfactional.com']
-env.user = 'photocalls'
 env.key_filename = '/home/photocalls/.ssh/photocalls_server_rsa'
 
 def clean_releases():
