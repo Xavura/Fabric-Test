@@ -1,11 +1,18 @@
 from fabric.api import local, settings, env, abort, run, cd, lcd
 from fabric.contrib.console import confirm
-from fabric.contrib.files import first
-from os.path import join, exists
+from fabric.contrib.files import first, exists
+from os.path import join
 import os
+
+env.hosts = ['photocalls.webfactional.com']
+env.user = 'photocalls'
+env.key_filename = '~/.ssh/photocalls_rsa'
 
 def clean_releases():
 	local("rm -rf /Users/joe/Fabric-Test/releases/")
+
+def test():
+	run('uname -s')
 
 def release(name, directory):
 	releases_directory = join(directory, 'releases')
@@ -29,7 +36,7 @@ def release(name, directory):
 					# local("echo '%s' > RELEASE" % commit)
 
 				if exists(join(releases_directory, commit)):
-					print("%s is already running commit %s, aborting!" % (name, commit))
+					print("%s is already localning commit %s, aborting!" % (name, commit))
 					return
 
 				local("echo '%s' > RELEASE" % commit)
@@ -56,3 +63,7 @@ def release(name, directory):
 
 def local_deploy_test():
 	release("Fabric-Test", "/Users/joe/Fabric-Test/")
+
+
+def deploy_test():
+	release("Website", "/Users/joe/Fabric-Test")
