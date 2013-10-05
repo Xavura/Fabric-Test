@@ -44,9 +44,9 @@ def release(name, directory):
 				last_release = local("cat RELEASE", capture=True).rstrip()
 
 				if last_release:
-					print("Photocalls-Website is being upraded from commit %s to commit %s." % (last_release, commit))
+					print("%s is being upraded from commit %s to commit %s." % (name, last_release, commit))
 				else:
-					print("Photocalls-Website has no releases, creating initial release.")
+					print("%s has no releases, creating initial release." % name)
 
 				os.makedirs(join(releases_directory, commit))
 				# local("mkdir -p %s" % join(release, commit))
@@ -66,4 +66,4 @@ def local_deploy_test():
 
 
 def deploy_test():
-	release("Website", "/Users/joe/Fabric-Test")
+	release("Fabric-Test", "/home/photocalls/fabrictest/")
