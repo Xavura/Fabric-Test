@@ -6,7 +6,7 @@ import os
 
 env.hosts = ['photocalls.webfactional.com']
 env.user = 'photocalls'
-env.key_filename = '~/.ssh/photocalls_rsa'
+env.key_filename = '/home/photocalls/.ssh/photocalls_server_rsa'
 
 def clean_releases():
 	local("rm -rf /Users/joe/Fabric-Test/releases/")
