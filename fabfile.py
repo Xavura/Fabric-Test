@@ -4,8 +4,6 @@ from fabric.contrib.files import first, exists
 from os.path import join
 import os
 
-env.key_filename = '/home/photocalls/.ssh/photocalls_server_rsa'
-
 def clean_releases():
 	local("rm -rf /Users/joe/Fabric-Test/releases/")
 
